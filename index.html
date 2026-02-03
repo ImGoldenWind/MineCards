@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" />
+    <title>SvinCards</title>
+
+    <link rel="stylesheet" href="style.css?v=3" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div id="pages">
+      <div id="home-page" class="page active">
+        <div id="timer"></div>
+        <div id="progress-wrapper">
+          <button id="collect-btn">
+            <div id="btn-progress"></div>
+            <span id="btn-label">Собрать</span>
+          </button>
+
+          <button id="paid-spin-btn" class="red-btn" style="display: none">
+            <span id="paid-label"
+              >Крутить за донат (<span id="paid-spin-count">0</span>)</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <div id="cards-page" class="page">
+        <h2 id="cards-title">Мои карты</h2>
+        <div id="cards-container"></div>
+      </div>
+
+      <div id="donate-page" class="page">
+        <div id="donate-prices">
+          <h2></h2>
+          <p></p>
+          <h3></h3>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+
+        <p></p>
+      </div>
+
+      <div id="admin-page" class="page">
+        <h2>Админ-панель</h2>
+
+        <form id="reward-form">
+          <input
+            type="text"
+            id="target-id"
+            placeholder="Telegram ID"
+          /><br /><br />
+          <input
+            type="number"
+            id="reward-count"
+            placeholder="Количество круток"
+          /><br /><br />
+          <button type="submit">Выдать</button>
+        </form>
+
+        <hr style="margin: 20px 0; width: 80%" />
+
+        <form id="mass-form">
+          <input
+            type="number"
+            id="mass-reward-count"
+            placeholder="Круток всем"
+          /><br /><br />
+          <button type="submit" id="mass-reward-btn">Выдать всем</button>
+        </form>
+
+        <p id="admin-result"></p>
+      </div>
+    </div>
+
+    <div id="bottom-nav">
+      <button data-page="home-page" class="nav-btn active">
+        <i class="fas fa-home"></i>
+      </button>
+      <button data-page="cards-page" class="nav-btn">
+        <i class="fas fa-clone"></i>
+      </button>
+      <button id="admin-btn" data-page="admin-page" class="nav-btn">
+        <i class="fas fa-user-shield"></i>
+      </button>
+    </div>
+
+    <div id="card-modal" class="modal hidden">
+      <div class="modal-content animate__animated">
+        <div class="card-flip-container">
+          <div class="card-flip-inner">
+            <div class="card-side card-front" data-rarity="Uncommon">
+              <img id="card-image" src="" alt="Card Image" />
+              <h2 id="card-name">Card Name</h2>
+              <button id="close-modal">Закрыть</button>
+            </div>
+            <div class="card-side card-back">
+              <img src="card-back.jpg" alt="Back of Card" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio id="sound-common" src="common.ogg" preload="auto"></audio>
+    <audio id="sound-rare" src="rare.ogg" preload="auto"></audio>
+    <audio id="sound-epic" src="epic.ogg" preload="auto"></audio>
+    <audio id="sound-legendary" src="legendary.ogg" preload="auto"></audio>
+    <script src="script.js?v=5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </body>
+</html>
