@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title">
+  <title id="title">Ender Crown card front</title>
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".34" r=".78">
+      <stop offset="0" stop-color="#2b2350"/>
+      <stop offset=".55" stop-color="#0c1020"/>
+      <stop offset="1" stop-color="#05070c"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff0a3"/>
+      <stop offset=".5" stop-color="#ffcf5a"/>
+      <stop offset="1" stop-color="#ff8c32"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="640" height="960" rx="44" fill="#05070c"/>
+  <rect x="24" y="24" width="592" height="912" rx="34" fill="url(#bg)"/>
+  <rect x="70" y="72" width="500" height="630" rx="28" fill="#090d16" stroke="#ffcf5a" stroke-opacity=".72" stroke-width="7"/>
+  <g filter="url(#glow)" transform="translate(120 176)">
+    <path d="M40 278 100 96l98 130 98-130 64 182Z" fill="url(#gold)" stroke="#fff0a3" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M72 318h288v74H72Z" fill="url(#gold)" stroke="#fff0a3" stroke-width="10" stroke-linejoin="round"/>
+    <circle cx="100" cy="96" r="28" fill="#fff0a3"/>
+    <circle cx="198" cy="226" r="28" fill="#ffffff"/>
+    <circle cx="296" cy="96" r="28" fill="#fff0a3"/>
+  </g>
+  <g fill="#a8ffd6">
+    <circle cx="132" cy="156" r="8"/>
+    <circle cx="510" cy="212" r="10"/>
+    <circle cx="470" cy="618" r="8"/>
+    <circle cx="158" cy="650" r="10"/>
+  </g>
+  <path d="M112 760h416" stroke="#ffcf5a" stroke-width="4" stroke-linecap="round" opacity=".76"/>
+  <text x="320" y="808" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Ender Crown</text>
+  <text x="320" y="868" text-anchor="middle" fill="#ffdf79" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">LEGENDARY</text>
+</svg>

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node server/dev-server.mjs",
     "dev:client": "vite --host 127.0.0.1",
+    "db:setup": "node server/apply-schema.mjs",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "start": "node server/server.mjs"

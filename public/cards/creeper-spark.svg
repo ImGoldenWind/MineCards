@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title">
+  <title id="title">Creeper Spark card front</title>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#1e6f54"/>
+      <stop offset="1" stop-color="#07130f"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="960" rx="44" fill="#07130f"/>
+  <rect x="24" y="24" width="592" height="912" rx="34" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="912" rx="34" fill="url(#grid)"/>
+  <rect x="70" y="72" width="500" height="630" rx="28" fill="#0f241c" stroke="#80ffd0" stroke-opacity=".4" stroke-width="6"/>
+  <g transform="translate(160 190)">
+    <rect x="0" y="0" width="320" height="320" rx="22" fill="#66e0a8"/>
+    <rect x="70" y="72" width="58" height="82" rx="4" fill="#102018"/>
+    <rect x="192" y="72" width="58" height="82" rx="4" fill="#102018"/>
+    <rect x="132" y="164" width="56" height="62" rx="4" fill="#102018"/>
+    <rect x="82" y="236" width="156" height="50" rx="4" fill="#102018"/>
+    <path d="M12 318 318 12M48 336 336 48" stroke="#ddfff0" stroke-opacity=".28" stroke-width="16"/>
+  </g>
+  <circle cx="118" cy="154" r="22" fill="#baffdf" opacity=".75"/>
+  <circle cx="522" cy="652" r="28" fill="#36d792" opacity=".65"/>
+  <path d="M112 760h416" stroke="#9cffd4" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+  <text x="320" y="820" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Creeper Spark</text>
+  <text x="320" y="868" text-anchor="middle" fill="#9cffd4" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">COMMON</text>
+</svg>

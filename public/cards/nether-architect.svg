@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 960" role="img" aria-labelledby="title">
+  <title id="title">Nether Architect card front</title>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#8b5bd6"/>
+      <stop offset=".55" stop-color="#3d185f"/>
+      <stop offset="1" stop-color="#110717"/>
+    </linearGradient>
+    <linearGradient id="lava" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#ff4d35"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="960" rx="44" fill="#110717"/>
+  <rect x="24" y="24" width="592" height="912" rx="34" fill="url(#bg)"/>
+  <rect x="70" y="72" width="500" height="630" rx="28" fill="#180c22" stroke="#d7b5ff" stroke-opacity=".48" stroke-width="6"/>
+  <g transform="translate(120 160)">
+    <path d="M68 420V120l132-76 132 76v300" fill="none" stroke="#d7b5ff" stroke-width="26" stroke-linejoin="round"/>
+    <path d="M120 420V196l80-46 80 46v224" fill="none" stroke="#8b5bd6" stroke-width="22" stroke-linejoin="round"/>
+    <path d="M20 420h360" stroke="url(#lava)" stroke-width="34" stroke-linecap="round"/>
+    <path d="M58 486c48-56 88-56 136 0s88 56 136 0" fill="none" stroke="#ff8c32" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <circle cx="505" cy="150" r="35" fill="#ffcf5a" opacity=".84"/>
+  <circle cx="138" cy="636" r="26" fill="#d7b5ff" opacity=".65"/>
+  <path d="M112 760h416" stroke="#d7b5ff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+  <text x="320" y="808" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="800">Nether</text>
+  <text x="320" y="858" text-anchor="middle" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="50" font-weight="800">Architect</text>
+  <text x="320" y="900" text-anchor="middle" fill="#dfc4ff" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">EPIC</text>
+</svg>
