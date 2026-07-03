@@ -118,6 +118,8 @@ npm run db:setup
 
 Команда читает `DB_HOST`, `DB_PORT`, `DB_USER` и `DB_PASSWORD` из `.env`. Пользователь MySQL должен иметь права на `CREATE DATABASE`, `CREATE TABLE`, `ALTER`, `INSERT` и `UPDATE`.
 
+Для TiDB Cloud Starter укажите `DB_PORT=4000` и `DB_SSL=true`. `DB_SSL_CA_PATH` обычно можно оставить пустым на Linux-хостинге с системными root certificates.
+
 ## Production build
 
 ```bash
@@ -142,6 +144,8 @@ DB_NAME=minecards
 DB_USER=root
 DB_PASSWORD=
 DB_CONNECTION_LIMIT=10
+DB_SSL=false
+DB_SSL_CA_PATH=
 
 ADMIN_TELEGRAM_ID=7212088382
 TELEGRAM_BOT_TOKEN=
