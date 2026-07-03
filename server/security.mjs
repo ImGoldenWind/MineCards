@@ -8,6 +8,10 @@ function getClientIp(req) {
   return req.ip || req.socket.remoteAddress || "unknown";
 }
 
+function normalizeOrigin(origin) {
+  return origin.replace(/\/+$/, "");
+}
+
 export function securityHeaders(_req, res, next) {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -16,9 +20,9 @@ export function securityHeaders(_req, res, next) {
 }
 
 export function corsHeaders(req, res, next) {
-  const origin = req.get("origin") ?? "";
+  const origin = normalizeOrigin(req.get("origin") ?? "");
   const allowedOrigins = CORS_ORIGIN.split(",")
-    .map((value) => value.trim())
+    .map((value) => normalizeOrigin(value.trim()))
     .filter(Boolean);
   const allowOrigin = allowedOrigins.includes("*")
     ? "*"

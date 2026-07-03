@@ -19,6 +19,10 @@ app.use(corsHeaders);
 app.use("/api", apiRateLimit);
 app.use(express.json({ limit: process.env.JSON_BODY_LIMIT ?? "32kb" }));
 
+app.get("/api/health.php", (_req, res) => {
+  res.json({ ok: true, service: "MineCards API" });
+});
+
 registerGameApi(app);
 
 app.use(/^\/api(?:\/|$)/, (_req, res) => {

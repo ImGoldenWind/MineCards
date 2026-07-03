@@ -35,8 +35,19 @@ function apiErrorMessage(data: ApiErrorResponse | undefined, fallback: string): 
   return message || error || fallback;
 }
 
+function networkErrorMessage(url: string): string {
+  return `Не удалось подключиться к API: ${url}. Проверь VITE_API_BASE на Vercel, CORS_ORIGIN на Render и что Render-сервис запущен.`;
+}
+
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(url, init);
+  let response: Response;
+
+  try {
+    response = await fetch(url, init);
+  } catch {
+    throw new Error(networkErrorMessage(url));
+  }
+
   const text = await response.text();
   let data: (T & ApiErrorResponse) | undefined;
 
@@ -58,11 +69,18 @@ async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
 }
 
 async function postText(url: string, body: unknown): Promise<string> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: jsonHeaders(),
-    body: JSON.stringify(body),
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: jsonHeaders(),
+      body: JSON.stringify(body),
+    });
+  } catch {
+    throw new Error(networkErrorMessage(url));
+  }
+
   const text = await response.text();
 
   if (!response.ok) {
