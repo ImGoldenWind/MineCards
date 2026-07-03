@@ -118,8 +118,6 @@ npm run db:setup
 
 Команда читает `DB_HOST`, `DB_PORT`, `DB_USER` и `DB_PASSWORD` из `.env`. Пользователь MySQL должен иметь права на `CREATE DATABASE`, `CREATE TABLE`, `ALTER`, `INSERT` и `UPDATE`.
 
-Для TiDB Cloud Starter укажите `DB_PORT=4000` и `DB_SSL=true`. `DB_SSL_CA_PATH` обычно можно оставить пустым на Linux-хостинге с системными root certificates.
-
 ## Production build
 
 ```bash
