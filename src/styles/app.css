@@ -564,6 +564,27 @@ a {
   animation: spin 700ms steps(8, end) infinite;
 }
 
+.backend-wakeup {
+  min-height: 112px;
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.backend-wakeup .loader {
+  min-height: 70px;
+}
+
+.backend-wakeup p {
+  max-width: 280px;
+  margin: 0 auto;
+  color: var(--ore-muted);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
 .spin {
   animation: spin 700ms steps(8, end) infinite;
 }

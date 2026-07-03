@@ -2,7 +2,7 @@
 
 MineCards - Telegram Mini App с карточной gacha-механикой: игрок забирает бесплатную крутку по таймеру, открывает случайную карту, собирает коллекцию и может использовать дополнительные платные крутки.
 
-Проект подготовлен как fullstack-приложение для релиза: React + TypeScript на клиенте, Node.js/Express API, MySQL-хранилище, строгая проверка Telegram Mini App init data и локальный mock-режим только для разработки.
+Проект подготовлен как fullstack-приложение: React + TypeScript на клиенте, Node.js/Express API, MySQL-хранилище, строгая проверка Telegram Mini App init data и локальный mock-режим только для разработки.
 
 ## Demo
 
@@ -11,21 +11,9 @@ MineCards - Telegram Mini App с карточной gacha-механикой: и
 
 ## Screenshots
 
-### Главный экран
-
 ![Главный экран](docs/screenshots/home.png)
 
-### Коллекция
-
 ![Коллекция](docs/screenshots/collection.png)
-
-### Просмотр карточки
-
-![Просмотр карточки](docs/screenshots/collection-card-open.png)
-
-### Награда за крутку
-
-![Награда за крутку](docs/screenshots/reward-modal.png)
 
 ## Возможности
 
@@ -142,11 +130,11 @@ npm start
 ## Environment
 
 ```env
-PORT=5173
-HOST=127.0.0.1
-JSON_BODY_LIMIT=32kb
-API_RATE_LIMIT_WINDOW_MS=60000
-API_RATE_LIMIT_MAX=120
+PORT=
+HOST=
+JSON_BODY_LIMIT=
+API_RATE_LIMIT_WINDOW_MS=
+API_RATE_LIMIT_MAX=
 
 DB_HOST=localhost
 DB_PORT=3306
@@ -157,15 +145,15 @@ DB_CONNECTION_LIMIT=10
 DB_SSL=false
 DB_SSL_CA_PATH=
 
-ADMIN_TELEGRAM_ID=123456789
+ADMIN_TELEGRAM_ID=
 TELEGRAM_BOT_TOKEN=
-TELEGRAM_AUTH_MAX_AGE_SECONDS=604800
+TELEGRAM_AUTH_MAX_AGE_SECONDS=
 CRON_SECRET=
-MAX_ADMIN_REWARD_COUNT=1000
+MAX_ADMIN_REWARD_COUNT=
 
 VITE_API_MODE=auto
 VITE_API_BASE=/api
-VITE_ADMIN_TELEGRAM_ID=123456789
+VITE_ADMIN_TELEGRAM_ID=
 VITE_BUILD_SOURCEMAP=false
 ```
 

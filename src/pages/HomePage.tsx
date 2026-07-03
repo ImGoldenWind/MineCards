@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import { Gift, RotateCw, Sparkles } from "lucide-react";
 import commonSoundUrl from "../assets/sounds/common.ogg";
@@ -26,6 +26,8 @@ const confettiColors: Record<Rarity, string[]> = {
   Epic: ["#9b5cff", "#d7b5ff"],
   Legendary: ["#ffcf5a", "#ff8c32", "#fff0a3"],
 };
+
+const BACKEND_WAKEUP_DELAY_MS = 2500;
 
 function playRewardSound(rarity: Rarity) {
   const url = soundMap[rarity];
@@ -77,6 +79,22 @@ export function HomePage() {
   const clearLastCard = useGameStore((state) => state.clearLastCard);
   const countdown = useCountdown(nextClaimAt);
   const isBusy = claimStatus === "loading";
+  const [isBackendWaking, setIsBackendWaking] = useState(false);
+
+  useEffect(() => {
+    if (entryStatus !== "loading") {
+      setIsBackendWaking(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setIsBackendWaking(true);
+    }, BACKEND_WAKEUP_DELAY_MS);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [entryStatus]);
 
   useEffect(() => {
     if (!lastCard) return;
@@ -100,7 +118,12 @@ export function HomePage() {
 
       <section className="claim-panel">
         {entryStatus === "loading" ? (
-          <Loader label="Загружаем профиль" />
+          <div className="backend-wakeup" role="status" aria-live="polite">
+            <Loader label={isBackendWaking ? "Подключаем игровой сервер" : "Загружаем профиль"} />
+            {isBackendWaking ? (
+              <p>Готовим твою коллекцию. Это может занять несколько секунд.</p>
+            ) : null}
+          </div>
         ) : (
           <>
             <div className="timer-block">

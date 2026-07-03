@@ -8,12 +8,24 @@ import type {
 import { mapCard, mapEntryResponse, mapUserCard } from "./mappers";
 import { mockApi } from "./mockApi";
 
-const API_BASE = import.meta.env.VITE_API_BASE ?? "/api";
+const API_BASE = normalizeApiBase(import.meta.env.VITE_API_BASE);
 const API_MODE = import.meta.env.VITE_API_MODE ?? "auto";
 
 interface ApiErrorResponse {
   error?: unknown;
   message?: unknown;
+}
+
+function normalizeApiBase(value: unknown): string {
+  const base = typeof value === "string" ? value.trim() : "";
+
+  if (!base || base === "/") return "/api";
+
+  return base.replace(/\/+$/, "");
+}
+
+function apiUrl(path: string): string {
+  return `${API_BASE}/${path.replace(/^\/+/, "")}`;
 }
 
 function stringifyUnknown(value: unknown): string {
@@ -108,7 +120,7 @@ const realApi: ApiClient = {
     const response = await requestJson<{
       next_claim_at: string;
       spins_balance: number | string;
-    }>(`${API_BASE}/entry.php`, {
+    }>(apiUrl("entry.php"), {
       method: "POST",
       headers: jsonHeaders(),
       body: JSON.stringify({}),
@@ -126,7 +138,7 @@ const realApi: ApiClient = {
         image_url?: string;
         image?: string;
       };
-    }>(`${API_BASE}/claim.php`, {
+    }>(apiUrl("claim.php"), {
       method: "POST",
       headers: jsonHeaders(),
       body: JSON.stringify({ type }),
@@ -144,7 +156,7 @@ const realApi: ApiClient = {
         image_url?: string;
         count?: number | string;
       }>
-    >(`${API_BASE}/get_user_cards.php`, {
+    >(apiUrl("get_user_cards.php"), {
       headers: telegramHeaders(),
     });
 
@@ -152,14 +164,14 @@ const realApi: ApiClient = {
   },
 
   async rewardUser(payload: AdminRewardPayload) {
-    return postText(`${API_BASE}/admin.php`, {
+    return postText(apiUrl("admin.php"), {
       telegram_id: payload.telegramId,
       count: payload.count,
     });
   },
 
   async rewardAll(count: number) {
-    return postText(`${API_BASE}/admin.php`, {
+    return postText(apiUrl("admin.php"), {
       mass: "give_all",
       count,
     });
