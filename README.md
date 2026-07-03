@@ -11,9 +11,21 @@ MineCards - Telegram Mini App с карточной gacha-механикой: и
 
 ## Screenshots
 
+### Главный экран
+
 ![Главный экран](docs/screenshots/home.png)
 
+### Коллекция
+
 ![Коллекция](docs/screenshots/collection.png)
+
+### Просмотр карточки
+
+![Просмотр карточки](docs/screenshots/collection-card-open.png)
+
+### Награда за крутку
+
+![Награда за крутку](docs/screenshots/reward-modal.png)
 
 ## Возможности
 
