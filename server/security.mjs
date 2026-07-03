@@ -1,5 +1,6 @@
 const API_WINDOW_MS = Number(process.env.API_RATE_LIMIT_WINDOW_MS ?? 60_000);
 const API_MAX_REQUESTS = Number(process.env.API_RATE_LIMIT_MAX ?? 120);
+const CORS_ORIGIN = process.env.CORS_ORIGIN ?? "";
 
 const buckets = new Map();
 
@@ -11,6 +12,32 @@ export function securityHeaders(_req, res, next) {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  next();
+}
+
+export function corsHeaders(req, res, next) {
+  const origin = req.get("origin") ?? "";
+  const allowedOrigins = CORS_ORIGIN.split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const allowOrigin = allowedOrigins.includes("*")
+    ? "*"
+    : allowedOrigins.includes(origin)
+      ? origin
+      : "";
+
+  if (allowOrigin) {
+    res.setHeader("Access-Control-Allow-Origin", allowOrigin);
+    res.setHeader("Vary", "Origin");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, X-Telegram-Init-Data, Authorization, X-Cron-Secret");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  }
+
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+
   next();
 }
 

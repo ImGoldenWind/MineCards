@@ -79,7 +79,7 @@ export function AdminPage() {
             onChange={(event) => setTelegramId(event.target.value)}
             error={errors.telegramId}
             inputMode="numeric"
-            placeholder="7212088382"
+            placeholder="123456789"
           />
           <Input
             label="Количество круток"

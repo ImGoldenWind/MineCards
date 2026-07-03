@@ -12,9 +12,11 @@ function sslOptions() {
   if (!boolEnv("DB_SSL")) return undefined;
 
   const caPath = process.env.DB_SSL_CA_PATH;
+  const rejectUnauthorized = boolEnv("DB_SSL_REJECT_UNAUTHORIZED", true);
 
   return {
     minVersion: "TLSv1.2",
+    rejectUnauthorized,
     ...(caPath ? { ca: fs.readFileSync(caPath, "utf8") } : {}),
   };
 }
