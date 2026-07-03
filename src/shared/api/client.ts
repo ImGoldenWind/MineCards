@@ -12,17 +12,46 @@ const API_BASE = import.meta.env.VITE_API_BASE ?? "/api";
 const API_MODE = import.meta.env.VITE_API_MODE ?? "auto";
 
 interface ApiErrorResponse {
-  error?: string;
-  message?: string;
+  error?: unknown;
+  message?: unknown;
+}
+
+function stringifyUnknown(value: unknown): string {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value === null || value === undefined) return "";
+
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
+function apiErrorMessage(data: ApiErrorResponse | undefined, fallback: string): string {
+  const message = stringifyUnknown(data?.message);
+  const error = stringifyUnknown(data?.error);
+
+  return message || error || fallback;
 }
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init);
   const text = await response.text();
-  const data = text ? (JSON.parse(text) as T & ApiErrorResponse) : undefined;
+  let data: (T & ApiErrorResponse) | undefined;
+
+  try {
+    data = text ? (JSON.parse(text) as T & ApiErrorResponse) : undefined;
+  } catch {
+    if (!response.ok) {
+      throw new Error(text || `HTTP ${response.status}`);
+    }
+
+    throw new Error("Invalid JSON response");
+  }
 
   if (!response.ok) {
-    throw new Error(data?.message ?? data?.error ?? "Ошибка запроса");
+    throw new Error(apiErrorMessage(data, `HTTP ${response.status}`));
   }
 
   return data as T;
@@ -37,7 +66,7 @@ async function postText(url: string, body: unknown): Promise<string> {
   const text = await response.text();
 
   if (!response.ok) {
-    throw new Error(text || "Ошибка запроса");
+    throw new Error(text || `HTTP ${response.status}`);
   }
 
   return text;
